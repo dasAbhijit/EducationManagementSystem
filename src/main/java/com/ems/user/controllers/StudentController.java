@@ -1,17 +1,23 @@
-package com.ems.EducationManagementSystem;
+package com.ems.user.controllers;
 
-import com.ems.EducationManagementSystem.models.Student;
+import java.util.UUID;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ems.user.models.Student;
+
 @RestController
+@RequestMapping("student")
 public class StudentController {
 
-    @GetMapping("/student/1")
-    public Student getStudent(){
+    @GetMapping("{id}")
+    public Student getStudent(@PathVariable UUID id){
         Student student1 = new Student();
-        student1.setId(1);
-        student1.setFullName("Abhijit Das");
+        student1.setId(id);
+        student1.setName("Abhijit Das");
         student1.setLevel("class 8");
         student1.setBoard("WB");
         student1.setContactNo("+91 9038793810");

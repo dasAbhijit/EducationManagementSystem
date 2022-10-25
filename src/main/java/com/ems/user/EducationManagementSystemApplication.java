@@ -1,4 +1,4 @@
-package com.ems.EducationManagementSystem;
+package com.ems.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
