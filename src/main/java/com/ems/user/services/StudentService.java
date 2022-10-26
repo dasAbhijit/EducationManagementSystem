@@ -8,4 +8,6 @@ public interface StudentService {
     Student getById(UUID id);
 
     Student add(Student student);
+
+    Student update(Student student) throws Exception;
 }

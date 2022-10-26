@@ -24,4 +24,9 @@ public class StudentController {
     public Student add(@RequestBody Student student) {
         return studentService.add(student);
     }
+
+    @PutMapping("update")
+    public Student update(@RequestBody Student student) throws Exception {
+        return studentService.update(student);
+    }
 }

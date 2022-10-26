@@ -12,10 +12,10 @@ import java.util.UUID;
 @Slf4j
 public class StudentServiceImpl implements StudentService {
 
-    List<Student> studentList = new ArrayList<>();
+    List<Student> studentDB = new ArrayList<>();
     @Override
     public Student getById(final UUID id) {
-        for (Student student : studentList) {
+        for (Student student : studentDB) {
             if (student.getId().equals(id)){
                 return student;
             }
@@ -26,7 +26,20 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student add(Student student) {
         student.setId(UUID.randomUUID());
-        studentList.add(student);
+        studentDB.add(student);
         return student;
+    }
+
+    @Override
+    public Student update(Student newStudent) throws Exception {
+        Student student = getById(newStudent.getId());
+        if (student != null) {
+            studentDB.remove(student);
+            newStudent.setId(student.getId());
+            studentDB.add(newStudent);
+            return newStudent;
+        } else {
+            throw new Exception("Data not found");
+        }
     }
 }
