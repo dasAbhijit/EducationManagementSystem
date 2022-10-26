@@ -6,4 +6,6 @@ import java.util.UUID;
 
 public interface StudentService {
     Student getById(UUID id);
+
+    Student add(Student student);
 }
