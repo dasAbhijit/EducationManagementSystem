@@ -1,6 +1,7 @@
 package com.ems.user.controllers;
 
 import com.ems.user.services.StudentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,7 @@ import com.ems.user.models.Student;
 
 @RestController
 @RequestMapping("student")
+
 public class StudentController {
 
     @Autowired
