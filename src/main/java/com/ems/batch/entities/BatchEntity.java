@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@Document("Students")
+@Document("Batches")
 public class BatchEntity {
     @Id
     private String id;
