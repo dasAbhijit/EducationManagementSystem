@@ -1,20 +1,22 @@
 package com.ems.batch.entities;
 
-import com.ems.user.models.Student;
-import lombok.Data;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+import com.ems.common.entities.StudentSummaryEntity;
+
+import lombok.Data;
 
 @Data
 @Document("Batches")
 public class BatchEntity {
-    @Id
-    private String id;
-    private String name;
-    private String board;
-    private String capacity;
-    private List<Student> students;
-    private double fee;
+	@Id
+	private String id;
+	private String name;
+	private String board;
+	private String capacity;
+	private List<StudentSummaryEntity> students;
+	private double fee;
 }

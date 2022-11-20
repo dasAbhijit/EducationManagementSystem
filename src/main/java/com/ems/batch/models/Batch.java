@@ -1,10 +1,11 @@
 package com.ems.batch.models;
 
-import com.ems.user.models.Student;
-import lombok.Data;
-
 import java.util.List;
 import java.util.UUID;
+
+import com.ems.common.models.StudentSummary;
+
+import lombok.Data;
 
 @Data
 public class Batch {
@@ -12,6 +13,6 @@ public class Batch {
     private String name;
     private String board;
     private String capacity;
-    private List<Student> students;
+    private List<StudentSummary> students;
     private double fee;
 }

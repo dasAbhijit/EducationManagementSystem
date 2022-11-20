@@ -1,34 +1,22 @@
 package com.ems.user.converters;
 
-import com.ems.user.entities.StudentEntity;
-import com.ems.user.models.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.Named;
 
-import java.util.UUID;
+import com.ems.common.converters.StringToUUIDConverter;
+import com.ems.common.converters.StringToUUIDConverter.StringToUUID;
+import com.ems.common.models.StudentSummary;
+import com.ems.user.entities.StudentEntity;
+import com.ems.user.models.Student;
 
-@Mapper
+@Mapper(uses = StringToUUIDConverter.class)
 public interface StudentMapper {
 
-    @Mappings({
-            @Mapping(target = "id", source = "id", qualifiedByName = "stringToUUID")
-    })
-    Student entityToModel(StudentEntity entity);
+	@Mapping(target = "id", source = "id", qualifiedBy = StringToUUID.class)
+	Student toModel(StudentEntity entity);
 
-    @Mappings({
-            @Mapping(target = "id", source = "id", qualifiedByName = "uUIDTOString")
-    })
-    StudentEntity modelToEntity(Student model);
+	StudentEntity toEntity(Student model);
 
-    @Named("uUIDTOString")
-    public static String uUIDToString(UUID id) {
-        return id.toString();
-    }
-
-    @Named("stringToUUID")
-    public static UUID stringToUUID(String id) {
-        return UUID.fromString(id);
-    }
+	@Mapping(target = "id", source = "id", qualifiedBy = StringToUUID.class)
+	StudentSummary toStudentSummaryModel(StudentEntity entity);
 }

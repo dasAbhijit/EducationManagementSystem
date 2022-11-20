@@ -3,9 +3,9 @@ package com.ems.batch.services;
 import com.ems.batch.models.Batch;
 
 public interface BatchService {
-    public Object getById(String id);
+	Batch getById(String id);
 
-    Batch add(Batch batch);
+	Batch add(Batch batch);
 
-    Batch update(Batch batch);
+	Batch update(Batch batch);
 }
