@@ -27,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
 		if (student.isPresent()) {
 			return studentMapper.entityToModel(student.get());
 		}
-		log.error("No Stident found for given id : {}", id);
+		log.error("No Student found for given id : {}", id);
 		throw ExceptionUtil.buildException("EMS0001");
 	}
 
