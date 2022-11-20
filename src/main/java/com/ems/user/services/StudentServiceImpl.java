@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
 	private StudentMapper studentMapper;
 
 	@Override
-	public Student getById(String id) {
+	public Student getById(String id) throws Exception {
 		Optional<StudentEntity> student = studentRepository.findById(id);
 		if (student.isPresent()) {
 			return studentMapper.entityToModel(student.get());
@@ -38,8 +38,10 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Student update(Student student) {
-		// TODO : find student
-		return studentMapper.entityToModel(studentRepository.save(studentMapper.modelToEntity(student)));
+	public Student update(Student student) throws Exception{
+		if (studentRepository.existsById(studentMapper.modelToEntity(student).getId())) {
+			return studentMapper.entityToModel(studentRepository.save(studentMapper.modelToEntity(student)));
+		}
+		throw ExceptionUtil.buildException("EMS0001");
 	}
 }

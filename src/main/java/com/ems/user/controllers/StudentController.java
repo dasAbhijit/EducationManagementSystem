@@ -13,7 +13,7 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping("{id}")
-    public Object getById(@PathVariable String id){
+    public Object getById(@PathVariable String id) throws Exception{
         return studentService.getById(id);
     }
 
