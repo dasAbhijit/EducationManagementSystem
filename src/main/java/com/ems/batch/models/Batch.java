@@ -3,16 +3,33 @@ package com.ems.batch.models;
 import java.util.List;
 import java.util.UUID;
 
+import org.immutables.value.Value.Immutable;
+import org.springframework.lang.Nullable;
+
 import com.ems.common.models.StudentSummary;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import lombok.Data;
+@Immutable
+@JsonDeserialize(builder = ImmutableBatch.Builder.class)
+public interface Batch {
 
-@Data
-public class Batch {
-    private UUID id = UUID.randomUUID();
-    private String name;
-    private String board;
-    private String capacity;
-    private List<StudentSummary> students;
-    private double fee;
+
+	@Nullable
+	UUID getId();
+	
+	String getBoard();
+
+	int getCapacity();
+
+	@Nullable
+	String getDescription();
+
+	double getFee();
+
+	String getName();
+
+	List<StudentSummary> getStudents();
+	
+	List<Schedule> getSchedules();
+
 }

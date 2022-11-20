@@ -1,7 +1,6 @@
 package com.ems.user.services;
 
 import java.util.Collection;
-import java.util.Set;
 import java.util.UUID;
 
 import com.ems.common.models.StudentSummary;
@@ -14,5 +13,5 @@ public interface StudentService {
 
 	Student update(Student student);
 	
-	Collection<StudentSummary> findStudentSummaries(Set<UUID> ids);
+	Collection<StudentSummary> findStudentSummaryByID(UUID... ids);
 }

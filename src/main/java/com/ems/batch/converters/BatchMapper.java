@@ -9,13 +9,12 @@ import com.ems.common.converters.StringToUUIDConverter;
 import com.ems.common.converters.StringToUUIDConverter.StringToUUID;
 import com.ems.common.converters.StudentSummaryMapper;
 
-@Mapper(uses = {StringToUUIDConverter.class,StudentSummaryMapper.class})
+@Mapper(uses = { StringToUUIDConverter.class, StudentSummaryMapper.class, ScheduleMapper.class })
 public interface BatchMapper {
 
-	 @Mapping(target = "id", source = "id", qualifiedBy = StringToUUID.class)
-    Batch toModel(BatchEntity entity);
+	@Mapping(target = "id", source = "id", qualifiedBy = StringToUUID.class)
+	Batch toModel(BatchEntity entity);
 
- 
 	BatchEntity toEntity(Batch model);
 
 }

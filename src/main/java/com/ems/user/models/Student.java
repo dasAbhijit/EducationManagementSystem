@@ -1,17 +1,31 @@
 package com.ems.user.models;
 
-import lombok.Data;
-
 import java.util.UUID;
 
-@Data
-public class Student {
-    private UUID id = UUID.randomUUID();
-    private String name;
-    private String contactNo;
-    private String address;
-    private String level;
-    private String board;
-    private String parentFullName;
-    private String parentContactNo;
+import org.immutables.value.Value.Immutable;
+import org.springframework.lang.Nullable;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@Immutable
+@JsonDeserialize(builder = ImmutableStudent.Builder.class)
+public interface Student {
+
+	String getAddress();
+
+	String getBoard();
+
+	String getContactNo();
+
+	@Nullable
+	UUID getId();
+
+	String getLevel();
+
+	String getName();
+
+	String getParentContactNo();
+
+	String getParentFullName();
+
 }

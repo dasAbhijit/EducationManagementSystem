@@ -1,8 +1,8 @@
 package com.ems.user.services;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -14,6 +14,7 @@ import com.ems.common.models.StudentSummary;
 import com.ems.common.utils.ExceptionUtil;
 import com.ems.user.converters.StudentMapper;
 import com.ems.user.entities.StudentEntity;
+import com.ems.user.models.ImmutableStudent;
 import com.ems.user.models.Student;
 import com.ems.user.repositories.StudentRepository;
 
@@ -40,8 +41,8 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student add(Student student) {
-		student.setId(UUID.randomUUID());
-		return studentMapper.toModel(studentRepository.save(studentMapper.toEntity(student)));
+		return studentMapper.toModel(studentRepository
+				.save(studentMapper.toEntity(ImmutableStudent.builder().from(student).id(UUID.randomUUID()).build())));
 	}
 
 	@Override
@@ -53,9 +54,9 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Collection<StudentSummary> findStudentSummaries(Set<UUID> ids) {
+	public Collection<StudentSummary> findStudentSummaryByID(UUID... ids) {
 		return StreamSupport.stream(studentRepository
-				.findAllById(ids.stream().map(UUID::toString).collect(Collectors.toList())).spliterator(), false)
+				.findAllById(Arrays.stream(ids).map(UUID::toString).collect(Collectors.toSet())).spliterator(), false)
 				.map(studentMapper::toStudentSummaryModel).collect(Collectors.toList());
 	}
 }

@@ -16,7 +16,9 @@ public class BatchEntity {
 	private String id;
 	private String name;
 	private String board;
-	private String capacity;
-	private List<StudentSummaryEntity> students;
+	private int capacity;
+	private String description;
 	private double fee;
+	private List<StudentSummaryEntity> students;
+	List<ScheduleEntity> schedules;
 }

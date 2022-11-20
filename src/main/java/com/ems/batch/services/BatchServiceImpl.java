@@ -1,18 +1,19 @@
 package com.ems.batch.services;
 
-import com.ems.batch.converters.BatchMapper;
-import com.ems.batch.entities.BatchEntity;
-import com.ems.batch.models.Batch;
-import com.ems.batch.repositories.BatchRepository;
-import com.ems.common.utils.ExceptionUtil;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.UUID;
+import com.ems.batch.converters.BatchMapper;
+import com.ems.batch.entities.BatchEntity;
+import com.ems.batch.models.Batch;
+import com.ems.batch.models.ImmutableBatch;
+import com.ems.batch.repositories.BatchRepository;
+import com.ems.common.utils.ExceptionUtil;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
@@ -35,12 +36,13 @@ public class BatchServiceImpl implements BatchService {
 
 	@Override
 	public Batch add(Batch batch) {
-		batch.setId(UUID.randomUUID());
-		return batchMapper.toModel(batchRepository.save(batchMapper.toEntity(batch)));
+		return batchMapper.toModel(batchRepository
+				.save(batchMapper.toEntity(ImmutableBatch.builder().from(batch).id(UUID.randomUUID()).build())));
 	}
 
 	@Override
 	public Batch update(Batch batch) {
+		//TODO: find if batch is available or not
 		return batchMapper.toModel(batchRepository.save(batchMapper.toEntity(batch)));
 	}
 }
